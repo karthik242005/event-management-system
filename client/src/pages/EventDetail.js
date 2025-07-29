@@ -10,14 +10,14 @@ function EventDetail() {
   const { role, username } = useAuth();
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/events/${id}`)
+    axios.get(`{process.env.REACT_APP_API_URL}/api/events/${id}`)
       .then(res => setEvent(res.data))
       .catch(err => console.error('Error fetching event:', err));
   }, [id]);
 
   const handleRegister = async () => {
     try {
-      const res = await axios.post('http://localhost:5000/api/registration', {
+      const res = await axios.post('{process.env.REACT_APP_API_URL}/api/registration', {
         studentUsername: username,
         eventId: id
       });

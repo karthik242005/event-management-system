@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
 
   // Check session on mount
   useEffect(() => {
-    axios.get('http://localhost:5000/api/auth/session', { withCredentials: true })
+    axios.get('{process.env.REACT_APP_API_URL}/api/auth/session', { withCredentials: true })
       .then(res => {
         setRole(res.data.role);
         setUsername(res.data.username);
@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    await axios.post('http://localhost:5000/api/auth/logout', {}, { withCredentials: true });
+    await axios.post('{process.env.REACT_APP_API_URL}/api/auth/logout', {}, { withCredentials: true });
     setRole(null);
     setUsername(null);
   };

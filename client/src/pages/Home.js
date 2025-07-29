@@ -6,7 +6,7 @@ function Home() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/events')
+    axios.get('{process.env.REACT_APP_API_URL}/api/events')
       .then(res => setEvents(res.data))
       .catch(err => {
         console.error('Failed to fetch events', err);

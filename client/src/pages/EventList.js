@@ -6,7 +6,7 @@ function EventList() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/events', { withCredentials: true })
+    axios.get('{process.env.REACT_APP_API_URL}/api/events', { withCredentials: true })
       .then(res => setEvents(res.data))
       .catch(() => alert('Failed to load events'));
   }, []);
