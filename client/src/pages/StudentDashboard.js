@@ -11,7 +11,7 @@ function StudentDashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const sessionRes = await axios.get('{process.env.REACT_APP_API_URL}/api/auth/session', {
+        const sessionRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/auth/session`, {
           withCredentials: true,
         });
 
@@ -28,10 +28,10 @@ function StudentDashboard() {
         setUsername(studentUsername);
 
         const [registrationsRes, eventsRes] = await Promise.all([
-          axios.get(`{process.env.REACT_APP_API_URL}/api/registration/${studentId}`, {
+          axios.get(`${process.env.REACT_APP_API_URL}/api/registration/${studentId}`, {
             withCredentials: true,
           }),
-          axios.get('{process.env.REACT_APP_API_URL}/api/events'),
+          axios.get(`#{process.env.REACT_APP_API_URL}/api/events`),
         ]);
 
         const registeredEventIds = registrationsRes.data.map((r) => r.eventId.toString());
@@ -52,7 +52,7 @@ function StudentDashboard() {
   const shownEvents = selectedTab === 'registered' ? registeredEvents : availableEvents;
 const handleRegister = async (eventId) => {
   try {
-    const res = await axios.post('{process.env.REACT_APP_API_URL}/api/registration', {
+    const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/registration`, {
       studentUsername: username,
       eventId
     });
@@ -65,7 +65,7 @@ const handleRegister = async (eventId) => {
 
 const handleUnregister = async (eventId) => {
   try {
-    const res = await axios.delete('{process.env.REACT_APP_API_URL}/api/registration', {
+    const res = await axios.delete(`${process.env.REACT_APP_API_URL}/api/registration`, {
       data: {
         studentUsername: username,
         eventId

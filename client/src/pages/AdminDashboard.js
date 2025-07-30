@@ -12,7 +12,7 @@ function AdminDashboard() {
     if (!window.confirm("Are you sure you want to delete this event?")) return;
 
     try {
-      await axios.delete(`{process.env.REACT_APP_API_URL}/api/events/${eventId}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/events/${eventId}`);
       // Remove deleted event from state
       setEvents(prevEvents => prevEvents.filter(event => event._id !== eventId));
     } catch (err) {
@@ -21,19 +21,17 @@ function AdminDashboard() {
     }
   };
   useEffect(() => {
-    axios.get('{process.env.REACT_APP_API_URL}/api/auth/session', { withCredentials: true })
-      .then(res => setUsername(res.data.username));
-      
+  axios.get(`${process.env.REACT_APP_API_URL}/api/auth/session`, { withCredentials: true })
+    .then(res => setUsername(res.data.username));
 
-
- axios.get('{process.env.REACT_APP_API_URL}/api/events')
+  axios.get(`${process.env.REACT_APP_API_URL}/api/events`)
     .then(async res => {
       const eventsData = res.data;
 
       // Fetch count for each event
       const enriched = await Promise.all(eventsData.map(async (event) => {
         try {
-          const countRes = await axios.get(`{process.env.REACT_APP_API_URL}/api/events/${event._id}/count`);
+          const countRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/events/${event._id}/count`);
           return { ...event, participantCount: countRes.data.count };
         } catch (err) {
           console.error('Error fetching participant count:', err);
@@ -44,9 +42,9 @@ function AdminDashboard() {
       setEvents(enriched);
     });
 
-    axios.get('{process.env.REACT_APP_API_URL}/api/students')
-      .then(res => setStudents(res.data));
-  }, []);
+  axios.get(`${process.env.REACT_APP_API_URL}/api/students`)
+    .then(res => setStudents(res.data));
+}, []);
 
   const sections = {
     overview: (

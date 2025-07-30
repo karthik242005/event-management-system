@@ -18,7 +18,7 @@ function CreateEvent() {
   });
 
   useEffect(() => {
-    axios.get('{process.env.REACT_APP_API_URL}/api/auth/session', { withCredentials: true })
+    axios.get(`${process.env.REACT_APP_API_URL}/api/auth/session`, { withCredentials: true })
       .then(res => {
         if (res.data.role === 'admin') {
           setAuthorized(true);
@@ -52,7 +52,7 @@ function CreateEvent() {
         formPayload.append('image', image);
       }
 
-      await axios.post('{process.env.REACT_APP_API_URL}/api/events/create', formPayload, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/events/create`, formPayload, {
         withCredentials: true,
         headers: {
           'Content-Type': 'multipart/form-data',

@@ -20,12 +20,12 @@ function Login() {
 
     try {
       // Step 1: Login
-      await axios.post('{process.env.REACT_APP_API_URL}/api/auth/login', formData, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/login`, formData, {
         withCredentials: true
       });
 
       // Step 2: Fetch session immediately after login
-      const sessionRes = await axios.get('{process.env.REACT_APP_API_URL}/api/auth/session', {
+      const sessionRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/auth/session`, {
         withCredentials: true
       });
 

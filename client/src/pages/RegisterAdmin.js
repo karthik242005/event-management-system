@@ -6,7 +6,7 @@ function RegisterAdmin() {
   const [form, setForm] = useState({ username: '', password: '' });
 
   const handleSubmit = async () => {
-    await axios.post('{process.env.REACT_APP_API_URL}/api/auth/register', { ...form, role: 'admin' });
+    await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/register`, { ...form, role: 'admin' });
     alert('Admin registered successfully');
   };
 

@@ -17,7 +17,7 @@ function EventDetail() {
 
   const handleRegister = async () => {
     try {
-      const res = await axios.post('{process.env.REACT_APP_API_URL}/api/registration', {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/registration`, {
         studentUsername: username,
         eventId: id
       });

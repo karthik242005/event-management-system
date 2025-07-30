@@ -15,13 +15,13 @@ function RegisterStudent() {
   const handleSubmit = async () => {
     try {
       // 1. Register the student
-      await axios.post('{process.env.REACT_APP_API_URL}/api/auth/register', {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/register`, {
         ...form,
         role: 'student'
       });
 
       // 2. Register for the selected event using the student username and eventId from URL
-      await axios.post('{process.env.REACT_APP_API_URL}/api/registration', {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/registration`, {
         studentUsername: form.username,
         eventId: eventId
       });

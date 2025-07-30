@@ -6,13 +6,17 @@ function Home() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    axios.get('{process.env.REACT_APP_API_URL}/api/events')
-      .then(res => setEvents(res.data))
-      .catch(err => {
-        console.error('Failed to fetch events', err);
-        alert('Could not load events');
-      });
-  }, []);
+  fetch(`${process.env.REACT_APP_API_URL}/api/events`)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data); // Make sure this prints the event data
+      setEvents(data);
+    })
+    .catch(err => {
+      console.error("Failed to fetch events", err);
+    });
+}, []);
+
 
   const styles = {
     container: {
@@ -86,5 +90,4 @@ function Home() {
     </div>
   );
 }
-
 export default Home;
