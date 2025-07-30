@@ -17,7 +17,7 @@ const app = express();
 
 // ✅ CORS and body parser middleware (must come first)
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: [process.env.CLIENT_URL,'http://localhost:3000'],
   credentials: true
 }));
 app.use(express.json());
@@ -34,8 +34,8 @@ app.use(session({
   cookie: {
     maxAge: 14 * 24 * 60 * 60 * 1000,
     httpOnly: true,
-    secure: false,
-    sameSite: 'lax'
+    secure: true,
+    sameSite: 'none'
   }
 }));
 
