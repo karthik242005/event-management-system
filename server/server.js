@@ -12,17 +12,17 @@ import authRoutes from './routes/auth.js';
 import eventRoutes from './routes/events.js';
 
 dotenv.config();
+// 🔥🔥 Required for secure cookies on Render
 
 const app = express();
-
+app.set('trust proxy', 1); 
 // ✅ CORS and body parser middleware (must come first)
 app.use(cors({
-  origin: [process.env.CLIENT_URL,'http://localhost:3000'],
+  origin: [process.env.CLIENT_URL, 'http://localhost:3000'],
   credentials: true
 }));
 app.use(express.json());
 
-// ✅ Session middleware
 app.use(session({
   secret: 'your_secret_key',
   resave: false,
