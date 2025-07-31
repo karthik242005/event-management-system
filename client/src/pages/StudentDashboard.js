@@ -31,7 +31,7 @@ function StudentDashboard() {
           axios.get(`${process.env.REACT_APP_API_URL}/api/registration/${studentId}`, {
             withCredentials: true,
           }),
-          axios.get(`#{process.env.REACT_APP_API_URL}/api/events`),
+          axios.get(`${process.env.REACT_APP_API_URL}/api/events`),
         ]);
 
         const registeredEventIds = registrationsRes.data.map((r) => r.eventId.toString());
