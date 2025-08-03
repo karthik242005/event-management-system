@@ -97,10 +97,7 @@ function Home() {
       `}</style>
 
       {/* Header */}
-      <header className="home-header">
-        <h1 className="home-title">College Event Hub</h1>
-        <p className="home-subtitle">Discover, manage, and register for college events with ease.</p>
-      </header>
+
 
       {/* Events Section */}
       <section className="events-section">
