@@ -38,7 +38,7 @@ function Navbar() {
 
   return (
     <nav style={styles.nav}>
-      <div style={styles.brand}>Event Manager</div>
+      <div style={styles.brand}>College Event Hub</div>
       <div>
         {!role && (
           <>
