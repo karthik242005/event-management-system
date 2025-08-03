@@ -1,93 +1,136 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 function Home() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-  fetch(`${process.env.REACT_APP_API_URL}/api/events`)
-    .then(res => res.json())
-    .then(data => {
-      console.log(data); // Make sure this prints the event data
-      setEvents(data);
-    })
-    .catch(err => {
-      console.error("Failed to fetch events", err);
-    });
-}, []);
-
-
-  const styles = {
-    container: {
-      textAlign: 'center',
-      padding: '50px',
-      backgroundColor: '#f0f2f5',
-      minHeight: 'calc(100vh - 60px)',
-      fontFamily: 'Arial, sans-serif'
-    },
-    title: {
-      fontSize: '3rem',
-      marginBottom: '20px',
-      color: '#2c3e50'
-    },
-    subtitle: {
-      fontSize: '1.2rem',
-      marginBottom: '40px',
-      color: '#555'
-    },
-    eventCard: {
-      backgroundColor: '#fff',
-      margin: '20px auto',
-      padding: '20px',
-      borderRadius: '10px',
-      width: '80%',
-      boxShadow: '0 0 10px rgba(0,0,0,0.1)',
-      textAlign: 'left'
-    },
-    eventTitle: {
-      fontSize: '1.5rem',
-      marginBottom: '10px',
-      color: '#007bff'
-    },
-    eventDetails: {
-      color: '#333',
-      marginBottom: '5px'
-    },
-    image: {
-  width: '100%',
-  height: '180px',
-  objectFit: 'cover',
-  borderRadius: '10px',
-  marginBottom: '10px',
-}
-
-  };
+    fetch(`${process.env.REACT_APP_API_URL}/api/events`)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setEvents(data);
+      })
+      .catch(err => {
+        console.error("Failed to fetch events", err);
+      });
+  }, []);
 
   return (
-    <div style={styles.container}>
-      <h1 style={styles.title}>College Event Management System</h1>
-      <p style={styles.subtitle}>Discover, manage, and register for college events with ease.</p>
+    <div className="home-container">
+      {/* Embedded CSS */}
+      <style>{`
+        .home-container {
+          background-color: #f4f7fa;
+          min-height: 100vh;
+          padding: 2rem 1rem;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-      {events.length === 0 ? (
-        <p>No upcoming events.</p>
-      ) : (
-        events.map(event => (
-          <div key={event._id} style={styles.eventCard}>
-            {event.imageUrl && (
-    <img src={event.imageUrl} alt={event.title} style={styles.image} />
-  )}
-<Link to={`/events/${event._id}`} style={{ textDecoration: 'none', color: '#007bff' }}>
-  <div style={styles.title}>{event.title}</div>
-</Link>
-            <div style={styles.eventDetails}><strong>Date:</strong> {new Date(event.date).toLocaleDateString()}</div>
-            <div style={styles.eventDetails}><strong>Location:</strong> {event.location}</div>
-            <div style={styles.eventDetails}><strong>Description:</strong> {event.description}</div>
-            <div style={styles.eventDetails}><strong>Created by:</strong> {event.createdBy}</div>
-          </div>
-        ))
-      )}
+        .home-header {
+          text-align: center;
+          margin-bottom: 3rem;
+        }
+
+        .home-title {
+          font-size: 2.8rem;
+          color: #2c3e50;
+          margin-bottom: 0.5rem;
+        }
+
+        .home-subtitle {
+          font-size: 1.2rem;
+          color: #666;
+        }
+
+        .events-section {
+          max-width: 1000px;
+          margin: 0 auto;
+        }
+
+        .event-card {
+          background-color: white;
+          border-radius: 12px;
+          padding: 1.5rem;
+          margin-bottom: 2rem;
+          box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+          transition: transform 0.2s ease;
+        }
+
+        .event-card:hover {
+          transform: scale(1.02);
+        }
+
+        .event-image {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+          border-radius: 10px;
+          margin-bottom: 1rem;
+        }
+
+        .event-title {
+          font-size: 1.6rem;
+          color: #007bff;
+          margin-bottom: 0.5rem;
+        }
+
+        .event-link {
+          text-decoration: none;
+        }
+
+        .event-link:hover .event-title {
+          text-decoration: underline;
+        }
+
+        .event-detail {
+          font-size: 1rem;
+          margin-bottom: 0.4rem;
+          color: #333;
+        }
+
+        .no-events {
+          text-align: center;
+          font-size: 1.1rem;
+          color: #999;
+        }
+      `}</style>
+
+      {/* Header */}
+      <header className="home-header">
+        <h1 className="home-title">College Event Hub</h1>
+        <p className="home-subtitle">Discover, manage, and register for college events with ease.</p>
+      </header>
+
+      {/* Events Section */}
+      <section className="events-section">
+        {events.length === 0 ? (
+          <p className="no-events">No upcoming events.</p>
+        ) : (
+          events.map(event => (
+            <div key={event._id} className="event-card">
+              {event.imageUrl && (
+                <img
+                  src={event.imageUrl}
+                  alt={event.title}
+                  className="event-image"
+                />
+              )}
+
+              <Link to={`/events/${event._id}`} className="event-link">
+                <h2 className="event-title">{event.title || "Untitled Event"}</h2>
+              </Link>
+
+              <p className="event-detail"><strong>Date:</strong> {new Date(event.date).toLocaleDateString()}</p>
+              <p className="event-detail"><strong>Location:</strong> {event.location || "TBD"}</p>
+              <p className="event-detail"><strong>Description:</strong> {event.description || "No description provided."}</p>
+              <p className="event-detail"><strong>Created by:</strong> {event.createdBy || "Admin"}</p>
+            </div>
+          ))
+        )}
+      </section>
     </div>
   );
 }
+
 export default Home;
