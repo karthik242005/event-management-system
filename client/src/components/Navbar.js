@@ -42,9 +42,7 @@ function Navbar() {
       <div>
         {!role && (
           <>
-            <button style={styles.link} onClick={() => navigate('/')}>Home</button>
-            <Link to="/events" style={styles.link}>Events</Link>
-            <Link to="/about" style={styles.link}>About</Link>
+            <Link to="/" style={styles.link}>Home</Link>
             <Link to="/login" style={styles.link}>Login</Link>
             <Link to="/register" style={styles.link}>Register</Link>
           </>
