@@ -57,141 +57,151 @@ function Register() {
   };
 
   return (
-    <div style={styles.container}>
-      <h2>Register</h2>
+    <>
+      <style>{`
+        .register-container {
+          padding: 40px;
+          max-width: 500px;
+          margin: 60px auto;
+          font-family: 'Poppins', sans-serif;
+          background: #f7f9fc;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
 
-      <form onSubmit={handleSubmit} style={styles.form}>
-        
+        .register-container h2 {
+          text-align: center;
+          margin-bottom: 20px;
+          color: #333;
+        }
 
-        <input
-          name="username"
-          placeholder="Username"
-          value={form.username}
-          onChange={handleChange}
-          required
-          style={styles.input}
-        />
+        .register-form {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+        }
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={form.email}
-          onChange={handleChange}
-          required
-          style={styles.input}
-        />
+        .register-form input {
+          padding: 12px;
+          font-size: 16px;
+          border-radius: 6px;
+          border: 1px solid #ccc;
+          width: 100%;
+          transition: border 0.2s;
+        }
 
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={form.password}
-          onChange={handleChange}
-          required
-          style={styles.input}
-        />
+        .register-form input:focus {
+          border-color: #007bff;
+          outline: none;
+        }
 
-        <input
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirm Password"
-          value={form.confirmPassword}
-          onChange={handleChange}
-          required
-          style={styles.input}
-        />
+        .register-form button {
+          padding: 12px;
+          font-size: 16px;
+          border-radius: 6px;
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          cursor: pointer;
+          transition: background 0.2s ease-in-out;
+        }
 
-        {role === 'student' && (
-          <>
-            <input
-              name="name"
-              placeholder="Full Name"
-              value={form.name}
-              onChange={handleChange}
-              required
-              style={styles.input}
-            />
-            <input
-              name="year"
-              placeholder="Year"
-              value={form.year}
-              onChange={handleChange}
-              required
-              style={styles.input}
-            />
-            <input
-              name="branch"
-              placeholder="Branch"
-              value={form.branch}
-              onChange={handleChange}
-              required
-              style={styles.input}
-            />
-            <input
-              name="section"
-              placeholder="Section"
-              value={form.section}
-              onChange={handleChange}
-              required
-              style={styles.input}
-            />
-            <input
-              name="regNo"
-              placeholder="Registration Number"
-              value={form.regNo}
-              onChange={handleChange}
-              required
-              style={styles.input}
-            />
-            <input
-              name="phone"
-              placeholder="Phone Number"
-              value={form.phone}
-              onChange={handleChange}
-              required
-              style={styles.input}
-            />
-          </>
-        )}
+        .register-form button:hover {
+          background-color: #0056b3;
+        }
+      `}</style>
 
-        <button type="submit" style={styles.button}>Register</button>
-      </form>
-    </div>
+      <div className="register-container">
+        <h2>Register</h2>
+
+        <form onSubmit={handleSubmit} className="register-form">
+          <input
+            name="username"
+            placeholder="Username"
+            value={form.username}
+            onChange={handleChange}
+            required
+          />
+
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={form.email}
+            onChange={handleChange}
+            required
+          />
+
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={form.password}
+            onChange={handleChange}
+            required
+          />
+
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            value={form.confirmPassword}
+            onChange={handleChange}
+            required
+          />
+
+          {role === 'student' && (
+            <>
+              <input
+                name="name"
+                placeholder="Full Name"
+                value={form.name}
+                onChange={handleChange}
+                required
+              />
+              <input
+                name="year"
+                placeholder="Year"
+                value={form.year}
+                onChange={handleChange}
+                required
+              />
+              <input
+                name="branch"
+                placeholder="Branch"
+                value={form.branch}
+                onChange={handleChange}
+                required
+              />
+              <input
+                name="section"
+                placeholder="Section"
+                value={form.section}
+                onChange={handleChange}
+                required
+              />
+              <input
+                name="regNo"
+                placeholder="Registration Number"
+                value={form.regNo}
+                onChange={handleChange}
+                required
+              />
+              <input
+                name="phone"
+                placeholder="Phone Number"
+                value={form.phone}
+                onChange={handleChange}
+                required
+              />
+            </>
+          )}
+
+          <button type="submit">Register</button>
+        </form>
+      </div>
+    </>
   );
 }
-
-const styles = {
-  container: {
-    padding: '40px',
-    maxWidth: '500px',
-    margin: 'auto',
-    fontFamily: "'Poppins', sans-serif",
-    background: '#f7f9fc',
-    borderRadius: '10px',
-    boxShadow: '0 0 10px rgba(0,0,0,0.1)'
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '15px'
-  },
-  input: {
-    padding: '12px',
-    fontSize: '16px',
-    borderRadius: '6px',
-    border: '1px solid #ccc',
-    width: '100%'
-  },
-  button: {
-    padding: '12px',
-    fontSize: '16px',
-    borderRadius: '6px',
-    backgroundColor: '#007bff',
-    color: '#fff',
-    border: 'none',
-    cursor: 'pointer'
-  }
-};
 
 export default Register;
