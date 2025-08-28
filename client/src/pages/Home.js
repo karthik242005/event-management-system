@@ -114,9 +114,8 @@ function Home() {
                 />
               )}
 
-              <Link to={`/events/${event._id}`} className="event-link">
                 <h2 className="event-title">{event.title || "Untitled Event"}</h2>
-              </Link>
+              
 
               <p className="event-detail"><strong>Date:</strong> {new Date(event.date).toLocaleDateString()}</p>
               <p className="event-detail"><strong>Location:</strong> {event.location || "TBD"}</p>
