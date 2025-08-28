@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext'; // Make sure this path is corr
 
 function Login() {
   const navigate = useNavigate();
-  const { login } = useAuth(); // Pull login function from context
+  const { login } = useAuth();
 
   const [formData, setFormData] = useState({
     username: '',
@@ -48,23 +48,76 @@ function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Login</h2>
-      <input
-        name="username"
-        placeholder="Username"
-        onChange={handleChange}
-        required
-      /><br />
-      <input
-        name="password"
-        type="password"
-        placeholder="Password"
-        onChange={handleChange}
-        required
-      /><br />
-      <button type="submit">Login</button>
-    </form>
+    <>
+      <style>{`
+        .login-form {
+          max-width: 350px;
+          margin: 80px auto;
+          padding: 25px;
+          border: 1px solid #ddd;
+          border-radius: 12px;
+          box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+          background: #fff;
+          text-align: center;
+          font-family: Arial, sans-serif;
+        }
+
+        .login-form h2 {
+          margin-bottom: 20px;
+          font-size: 22px;
+          color: #333;
+        }
+
+        .login-form input {
+          width: 90%;
+          padding: 10px;
+          margin: 8px 0;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          font-size: 14px;
+        }
+
+        .login-form input:focus {
+          border-color: #4a90e2;
+          outline: none;
+        }
+
+        .login-form button {
+          width: 95%;
+          padding: 10px;
+          margin-top: 15px;
+          background: #4a90e2;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          font-size: 16px;
+          cursor: pointer;
+          transition: background 0.2s ease-in-out;
+        }
+
+        .login-form button:hover {
+          background: #357abd;
+        }
+      `}</style>
+
+      <form onSubmit={handleSubmit} className="login-form">
+        <h2>Login</h2>
+        <input
+          name="username"
+          placeholder="Username"
+          onChange={handleChange}
+          required
+        /><br />
+        <input
+          name="password"
+          type="password"
+          placeholder="Password"
+          onChange={handleChange}
+          required
+        /><br />
+        <button type="submit">Login</button>
+      </form>
+    </>
   );
 }
 
